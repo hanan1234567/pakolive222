@@ -1,5 +1,4 @@
 'use strict';
-const port = 5001
 const express = require('express')
 const connection = require('./config/connection')
 const cors = require('cors')
@@ -17,6 +16,8 @@ app.use(cors(corsOptions))
 
 app.use('/api/portal', websiteRoutes)
 app.use('/api/portal', adminRoutes)
+const port =process.env.PORT || 5001
+app.use(express.static("build"))
 app.listen(port, async () => {
     await connection()    
     console.log(`Example app listening at http://localhost:${port}`)
